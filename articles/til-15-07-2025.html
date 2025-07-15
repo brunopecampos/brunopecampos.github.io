@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width" />
+  <title>Bruno's Landing Page</title>
+  <style>
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+    }
+  </style>
+</head>
+<body>
+  <h1>TIL - 15.07.2025</h1>
+  <h2>How does one connect to an RDS instance?</h2>
+  <p>First of all, there is the RDS api through which one can make action calls to AWS to perform actions in the RDS service level.</p>
+  <p>These actions would include create an instance, stopping it, describing it, etc https://docs.aws.amazon.com/AmazonRDS/latest/APIReference/API_Operations.html</p>
+  <p>With regards to connection in the Database level, an RDS instance can have two connection endpoints: a private and a public IP. Regarless of its configuration the instance will always have the private IP inside its vpc and subnet group.</p>
+  <p>If the instance is public, then it also gets a public IP accessible by everyone on the web.</p>
+  <p>The difference here is how the its name is resolved. If the client within the RDS VPC (or in a reachable VPC) the RDS name will be resolved to the private IP.</p>
+  <p>If the name is seached through an AWS-external client, the name will be resolved to the public IP.</p>
+  <p>The importance of this mechanism is avoid outside traffic to the VPC, which inccours in extra cost.</p>
+  <p>References:</p>
+  <ul>
+    <li><a href="https://stackoverflow.com/questions/65455413/amazon-rds-and-vpc-endpoints-connectivity">https://stackoverflow.com/questions/65455413/amazon-rds-and-vpc-endpoints-connectivity</a></li>
+    <li><a href="https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/ProgrammingGuide.html">https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/ProgrammingGuide.html</a></li>
+  </ul>
+</body>
+</html>
